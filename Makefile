@@ -7,5 +7,5 @@ Client: Client.c
 	gcc -o Client Client.c
 
 clean:
-	rm *.exe all
+	rm -f Client Server
 

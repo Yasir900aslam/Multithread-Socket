@@ -101,7 +101,7 @@ void *thread_connection(void *client_sockfd)
     else
     {
         printf("Error Occured");
-        return;
+        return 0;
     }
     //fflush(stdin);
     if (option == 2)

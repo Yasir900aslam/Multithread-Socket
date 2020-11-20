@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
             //server to cleint
             bzero(message, 50);
             read(sockfd, message, 50);
-            printf("string passed by server%s\n", message);
+            printf("string passed by server: %s\n", message);
 
             //server to client ..... sending time
             float x;
