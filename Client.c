@@ -40,13 +40,13 @@ int main(int argc, char *argv[])
     read(sockfd, buffer, 1024); //reading from the server
     int option,convertedOption ;
     char fs_name[20];
-    int LENGTH = 512;
+    int LENGTH = 1024;
     char sdbuf[LENGTH];
     int fs_block_sz;
     while(1) {
     printf("menu sent by server %s\n", buffer);
     //receiving input from user
-    printf("choose service\n");
+    printf("choose service: ");
     scanf("%d", &option);
     //sending input to server
     convertedOption = htonl(option);
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
     if (option == 2)
     {
         //****************************************************Uploading file to server*******************************************
-        printf("enter file Path :");
+        printf("\nenter file Path :");
         scanf("%s", fs_name);
         // printf("%s",fs_name);
         //**********************send file path to server**************************** 
@@ -115,10 +115,6 @@ int main(int argc, char *argv[])
             bzero(message, 50);
             read(sockfd, message, 50);
             printf("string passed by server%s\n", message);
-
-            //client to server
-            write(sockfd, &message, strlen(message));
-            printf("string passed to server%s\n", message);
 
             //server to client ..... sending time
             float x;

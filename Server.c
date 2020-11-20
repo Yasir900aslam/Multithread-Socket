@@ -10,7 +10,6 @@
 #include <time.h>
 
 #define PORT 8081
-
 void *thread_connection(void *); // Thread function
 int c = 0;                       // For numbering and keeping track of our clients
 int iterations = 1;
@@ -101,17 +100,16 @@ void *thread_connection(void *client_sockfd)
     }
     else
     {
-        // Handling erros here
+        printf("Error Occured");
+        return;
     }
     //fflush(stdin);
     if (option == 2)
     {
         clock_t time;
-        char file[1024] = {0};
-        // read(client_sock, file, 1024); //reading from the sender
-        // printf("filePath received %s \n",file);
+        char file[2000] = {0};
         //************************************reading entire file**********************
-        int LENGTH = 512;
+        int LENGTH = 1024;
         char revbuf[LENGTH]; // Receiver buffer
         //creating file name
         time = clock();
@@ -123,7 +121,6 @@ void *thread_connection(void *client_sockfd)
             printf("File %s Cannot be opened file on server.\n", fr_name);
         else
         {
-
             bzero(revbuf, LENGTH);
             int fr_block_sz = 0;
             while ((fr_block_sz = recv(client_sock, revbuf, LENGTH, 0)) > 0)
@@ -141,7 +138,6 @@ void *thread_connection(void *client_sockfd)
             float times = (float)time / CLOCKS_PER_SEC;
             float x = times;
             send(client_sock, &x, sizeof(float), 0);
-
             fclose(fr);
         }
 
