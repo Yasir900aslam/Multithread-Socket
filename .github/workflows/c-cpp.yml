@@ -12,5 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: make
-      run: make Client Server
+    - name: Server
+      shell: bash
+      run: gcc -w -pthread -o Server Server.c 
+    - name: Client
+      shell: bash
+      run: gcc -w -o Client Client.c
+      
+      
+      
