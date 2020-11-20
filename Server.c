@@ -117,7 +117,7 @@ void *thread_connection(void *client_sockfd)
         time = clock();
         int ft = (int)time;
         char fr_name[30];
-        sprintf(fr_name, "%d_received_%d", c, ft);
+        sprintf(fr_name, "%dServer%d.txt", c, ft);
         FILE *fr = fopen(fr_name, "a");
         if (fr == NULL)
             printf("File %s Cannot be opened file on server.\n", fr_name);
@@ -139,9 +139,6 @@ void *thread_connection(void *client_sockfd)
 
             time = clock() - time;
             float times = (float)time / CLOCKS_PER_SEC;
-            // printf("File uploaded time taken=%f \n",times);
-
-            //sending time to client
             float x = times;
             send(client_sock, &x, sizeof(float), 0);
 
@@ -157,7 +154,7 @@ void *thread_connection(void *client_sockfd)
         int noOfString = 0;
         int strLength = 100;
         char string[strLength];
-        char *quit = "quit";
+        char *quit = "q";
 
         while (1)
         {
